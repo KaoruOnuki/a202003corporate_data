@@ -191,7 +191,7 @@
           });
         }
 
-        // 法人番号入力欄(半角数字の入力のみを許可/9桁の入力を必須とする)
+        // 法人番号入力欄(半角数字の入力のみを許可/13桁の入力を必須とする)
         if ($(idNumberForm)[0].value.length !== 13 || !$(idNumberForm)[0].value.match(/^[0-9]+$/)) {
           alert("法人番号は13字以内の半角数字で入力してください");
           $(idNumberForm).css('border', '1px solid #FF0000');
@@ -204,7 +204,7 @@
       function deleteSpace(text) {
         text.value = text.value.replace(/\s+/g, "");
       }
-      // 検索ウィンドウで下3桁のみを残す(２回目からはこれをdisable)
+      // 検索ウィンドウで下3桁のみを残す(2回目からはこれをdisable)
 // ID既にcfm上にあり
       var searchContainer = document.getElementById( "example_filter" );
       var searchWindow = $(searchContainer).find("input");
@@ -232,7 +232,7 @@
         }
       });
 
-      // 入力時：法人番号入力欄(半角数字の入力のみを許可/9桁の入力を必須とする)
+      // 入力時：法人番号入力欄(半角数字の入力のみを許可/13桁の入力を必須とする)
       $('#company_mynumber').focusout(function(e) {
         $(this).css('border', '1px solid #FF0000');
         if ($(this)[0].value.length !== 13 || !$(this)[0].value.match(/^[0-9]+$/)) {
