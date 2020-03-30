@@ -1,0 +1,343 @@
+/* // index */
+form :before, form :after {
+  content: "";
+  display: block;
+}
+
+form :after {
+  clear: both;
+}
+
+form  {
+   zoom: 1;
+}
+
+  form div {
+    float: left;
+    width: 12.5%;
+  }
+
+.index_data {
+  margin-top: 50px;
+}
+
+  table {
+    border-collapse: collapse;
+    border-right: 1px solid #999;
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+      .first-table table {
+        width: 99%;
+      }
+
+      .second-table table {
+        width: 88%;
+      }
+
+      table thead th{
+        padding: 8px 4px;
+        vertical-align: middle;
+        color: #fff;
+        background-color: #295890;
+        border-left: 5px solid #ff6633;
+        font-weight: normal;
+        text-align: left;
+      }
+
+      table td {
+        padding: 4px;
+        background-color: #fff;
+        border-top: 1px solid #999;
+        border-bottom: 1px solid #999;
+        border-left: 1px solid #999;
+        font-size: small;
+        text-overflow: visible;
+      }
+
+  .first-context {
+    margin-bottom: 10px;
+  }
+
+  .text:before, .text:after {
+    		content: "";
+    		display: block;
+      }
+
+      .text:after {
+        clear: both;
+      }
+
+      .text {
+         zoom: 1;
+       }
+
+          .text .left {
+            float: left;
+            width: 30%;
+          }
+
+          .text .right {
+            float: right;
+            width: 18%;
+          }
+
+
+
+
+/* //// DataTable */
+#usersdatatable_filter {
+  margin-bottom: 20px;
+}
+
+.usr_index table{
+  table-layout: fixed;
+  word-wrap:break-word;
+}
+
+.usr_index table　thead:hover, .usr_index table　th:hover, .usr_index table　select:hover {
+  cursor: pointer;
+}
+
+    table.dataTable {
+      border-bottom: 1px solid #eee !important;
+    }
+
+    table.dataTable　thead th {
+      border-bottom: none !important;
+      padding: 0px !important;
+      text-align: left !important;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    table.dataTable　thead td {
+      padding: 10px 0 !important;
+      text-align: left !important;
+    }
+
+    table.dataTable　tfoot th {
+      border-top: 1px solid #eee !important;
+    }
+
+    .dataTables_wrapper.no-footer .dataTables_scrollBody {
+      border-bottom: 1px solid #eee !important;
+    }
+
+      #usersdatatable thead td {
+        border-top: 1px solid #eee;
+        border-right: 1px solid #eee;
+      }
+
+
+              #usersdatatable thead td:first-child{
+                border-left: 1px solid #eee;
+              }
+
+      #usersdatatable td {
+        padding: 10px;
+      }
+
+      #usersdatatable tbody tr {
+        border-left: 1px solid #eee;
+      }
+
+      #usersdatatable tbody td{
+        border-right: 1px solid #eee;
+      }
+
+      #usersdatatable tbody td:first-child{
+        border-left: 1px solid #eee;
+      }
+
+      #usersdatatable tbody td:hover{
+        overflow: visible;
+        white-space: normal;
+        height:auto;
+      }
+
+      #filters select {
+        background-color: #fff;
+        border-width: 0px;
+        border-style: solid;
+        border-image: initial;
+        font-size: 13px;
+        width: 100%;
+      }
+
+              #filters select:focus {
+                outline: inherit;
+                outline-offset: 0px;
+                border-color: #fff;
+              }
+
+      table.dataTable thead th select{
+        padding: 8px 4px;
+        text-align: left;
+        vertical-align: top;
+        color: #fff!important;
+        background-color: #295890!important;
+        border-left: 5px solid #ff6633!important;
+        font-weight: normal;
+        border-radius: 0;
+        height: 36px;
+      }
+
+      #filters select {
+        -webkit-appearance: none;/* ベンダープレフィックス(Google Chrome、Safari用) */
+        -moz-appearance: none;	/* ベンダープレフィックス(Firefox用) */
+        appearance: none;	/* 標準のスタイルを無効にする */
+      }
+
+      #filters::-ms-expand {	/* select要素のデザインを無効にする（IE用） */
+        display: none;
+      }
+
+      .dt-body-left input {
+        width: 100%;
+        font-size: 10px;
+      }
+
+      #usersdatatable_wrapper #filters th:first-child, #usersdatatable tbody tr td:first-child {
+        width: 50px !important;
+        padding-left: 0px;
+        padding-right: 0px;
+      }
+
+/* // form */
+.form_data {
+  zoom: 1;
+}
+
+.form_data &:before {
+  content: "";
+  display: block;
+}
+
+.form_data &:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+.form_data .field {
+  width: 12.5%;
+  float: left;
+  box-sizing: border-box;
+}
+
+
+  .form_data label {
+    padding: 8px 4px;
+    vertical-align: top;
+    color: #fff;
+    background-color: #295890;
+    border-left: 5px solid #ff6633;
+    font-weight: normal;
+    text-align: left;
+  }
+
+
+    .form_data .input_container {
+      padding: 8px 4px;
+      background-color: #fff;
+      border-bottom: 1px solid #999;
+      border-left: 1px solid #999;
+      font-size: small;
+    }
+
+      .form_data label input {
+        width: 95%;
+      }
+
+  .form_data .last_container {
+    border-right: 1px solid #999;
+  }
+
+
+.backto {
+  margin-bottom: 20px;
+}
+
+#usersdatatable tbody tr td:first-child {
+  text-align: center;
+}
+
+.reflectionTrigger, .copyTrigger {
+  display: inline-block;
+  border-radius: 3px;
+  padding: 5px;
+  color: #fff;
+  background: #ff6633;
+  box-shadow: 0px 1px 4px 0px #777;
+}
+
+
+  .reflectionTrigger:hover, .copyTrigger:hover {
+    cursor: pointer;
+    box-shadow: 0px 0px 0px 0px #fff;
+  }
+
+#example_filter {
+  text-align: right;
+  margin-top: 50px;
+  margin-bottom: 20px;
+}
+
+h3 {
+  margin-bottom: 30px;
+}
+
+
+body {
+  background-color: #fff;
+  color: #333;
+  margin: 33px;
+  font-family: verdana, arial, helvetica, sans-serif;
+  font-size: 13px;
+  line-height: 18px;
+}
+
+p, ol, ul, td {
+  font-family: verdana, arial, helvetica, sans-serif;
+  font-size: 13px;
+  line-height: 18px;
+}
+
+pre {
+  background-color: #eee;
+  padding: 10px;
+  font-size: 11px;
+}
+
+th {
+  padding-bottom: 5px;
+}
+
+td {
+  padding: 0 5px 7px;
+}
+
+#notice {
+  color: green;
+}
+
+.field_with_errors {
+  padding: 2px;
+  background-color: red;
+  display: table;
+}
+
+#error_explanation {
+  width: 450px;
+  border: 2px solid red;
+  padding: 7px 7px 0;
+  margin-bottom: 20px;
+
+}
+
+label {
+  display: block;
+}

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="UTF-8">
+    <title>法人追加</title>
+    <meta name="author" content="株式会社アンシャンテ">
+    <meta name="copyright" content="&copy; COPYRIGHT © 株式会社アンシャンテ ALL RIGHTS RESERVED.">
+    <meta name="robots" content="all">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="css/add_company.css">
+    <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  </head>
+
+  <body>
+    <div>
+      <header>
+      </header>
+        <table>
+          <thead>
+            <tr>
+              <th>名前のコピー</th>
+              <th>NO</th>
+              <th>名前</th>
+              <th>IPアドレス</th>
+              <th>日時</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr>
+              <td><a class="copyTrigger"><i class="far fa-copy"></i>&nbsp;コピー</a></td>
+              <td>1096332</td>
+              <td><span class="copy_domain">fknet29.fujikikai-inc.co.jp</span></td>
+              <td>218.216.190.29</td>
+              <td>2020-02-19 17:46:30.0</td>
+            </tr>
+            <tr>
+              <td><a class="copyTrigger"><i class="far fa-copy"></i>&nbsp;コピー</a></td>
+              <td>1096332</td>
+              <td><span class="copy_domain">silver.horizon.co.jp</span></td>
+              <td>218.216.190.29</td>
+              <td>2020-02-19 17:46:30.0</td>
+            </tr>
+            <tr>
+              <td><a class="copyTrigger"><i class="far fa-copy"></i>&nbsp;コピー</a></td>
+              <td>1096332</td>
+              <td><span class="copy_domain">	　ns.micon.co.jp</span></td>
+              <td>218.216.190.29</td>
+              <td>2020-02-19 17:46:30.0</td>
+            </tr>
+          </tbody>
+        </table>
+      <script>
+
+
+      // メールアドレスのコピー作業(ワンクリックで実装)
+        $('.copyTrigger').on('click', function () {
+          let setTr = $(this).parent().parent();
+
+            // safari対応
+            var elm = $(setTr).find(".copy_domain")[0];
+            var range = document.createRange();
+            range.selectNodeContents(elm);
+            var sel = window.getSelection();
+            sel.removeAllRanges();
+            sel.addRange(range);
+
+          let text = $(setTr).find(".copy_domain")[0].innerHTML;
+          text = text.replace(/[ \t\n\x0B\f\r]/g, '');
+
+          let listener = function(e){
+            e.clipboardData.setData("text/plain" , text);
+            e.preventDefault();
+          }
+          document.addEventListener("copy" , listener);
+          document.execCommand("copy");
+        });
+
+
+      </script>
+    </div>
+
+    <script src="js/jquery-3.3.1.min.js"></script>
+  </body>
+</html>
