@@ -206,31 +206,34 @@
       }
       // 検索ウィンドウで下3桁のみを残す(2回目からはこれをdisable)
 // ID既にcfm上にあり
-      var searchContainer = document.getElementById( "example_filter" );
-      var searchWindow = $(searchContainer).find("input");
-      var countUp = 0;
-      $(searchWindow).on('input', function(){
-        countUp++;
-        var searchWord = $(searchWindow).val();
-        if (countUp == 1) {
-          if (searchWord.length > 0) {
-            // 全角半角スペースを自動で削除
-            $(searchWindow).val(function(i, v) {
-               return v.replace(/\s+/g, "");
-             });
-            // サブドメイン 以外削除
-            getExtension = searchWord.split(".").slice(-3);
-            searchWord = getExtension.join(".");
-            $(searchWindow).val(searchWord);
-          }
-        } else {
-          if (searchWord.length > 0) {
-            $(searchWindow).val(function(i, v) {
-               return v.replace(/\s+/g, "");
-             });
-          }
-        }
-      });
+window.addEventListener('DOMContentLoaded', function (event) {
+  var searchContainer = document.getElementById( "example_filter" );
+  var searchWindow = $(searchContainer).find("input");
+  var countUp = 0;
+  $(searchWindow).on('input', function(){
+    countUp++;
+    var searchWord = $(searchWindow).val();
+    if (countUp == 1) {
+      if (searchWord.length > 0) {
+        // 全角半角スペースを自動で削除
+        $(searchWindow).val(function(i, v) {
+           return v.replace(/\s+/g, "");
+         });
+        // サブドメイン 以外削除
+        getExtension = searchWord.split(".").slice(-3);
+        searchWord = getExtension.join(".");
+        $(searchWindow).val(searchWord);
+      }
+    } else {
+      if (searchWord.length > 0) {
+        $(searchWindow).val(function(i, v) {
+           return v.replace(/\s+/g, "");
+         });
+      }
+    }
+  });
+});
+
 
       // 入力時：法人番号入力欄(半角数字の入力のみを許可/13桁の入力を必須とする)
       $('#company_mynumber').focusout(function(e) {
