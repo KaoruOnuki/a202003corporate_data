@@ -48,11 +48,12 @@
         </tbody>
       </table>
 
-      <input type="submit" value="送信", onclick="return validation()">
-
+<!-- 送信ボタン：データ重複対策（クリックの回数制限） id足す-->
+<input type="submit" value="送信", onclick="return validation()" id="sendButton">
+<input type="button"  value="クリック制限解除" onclick="return initializeCountUpSendBtn()">
     </form>
 
-<!-- 既にcfm上にあり -->
+    <!-- 既にcfm上にあり -->
     <div id="example_filter">
       <form>検索
         <input type="text" name="submit2" id="submit2">
@@ -117,7 +118,7 @@
       reflectBtn();
 
         // 前の/次のページを押した時
-// ID既にcfm上にあり
+        // ID既にcfm上にあり
         $("#example_previous").on('click', function(){
           reflectBtn();
         });
@@ -157,82 +158,148 @@
       };
 
       // 送信時：入力欄制限
-      function validation(){
-        domainForm = document.getElementById("domain");
-        companyForm = document.getElementById("company_name");
-        prefectureForm = document.getElementById("prefecture_id");
-        addressForm = document.getElementById("address");
-        phoneForm = document.getElementById("tel");
-        faxForm = document.getElementById("fax");
-        urlForm = document.getElementById("url");
-        idNumberForm = document.getElementById("company_mynumber");
-        allFormColums = [domainForm, companyForm, prefectureForm, addressForm, phoneForm, faxForm, urlForm, idNumberForm]
+// 送信ボタン：データ重複対策（クリックの回数制限）
+var countUpSendBtn = 0;
+let sendButton = document.getElementById("sendButton");
 
-        var notAccepted = [
-          />/g, /</g, /=/g, /＞/g, /＜/g, /＝/g, /;/g, /；/g, /[?]/
-        ]
+function validation(){
+  countUpSendBtn++;
+  if (countUpSendBtn == 1) {
+    domainForm = document.getElementById("domain");
+    companyForm = document.getElementById("company_name");
+    prefectureForm = document.getElementById("prefecture_id");
+    addressForm = document.getElementById("address");
+    phoneForm = document.getElementById("tel");
+    faxForm = document.getElementById("fax");
+    urlForm = document.getElementById("url");
+    idNumberForm = document.getElementById("company_mynumber");
+    allFormColums = [domainForm, companyForm, prefectureForm, addressForm, phoneForm, faxForm, urlForm, idNumberForm]
 
-        for (i = 0; i < allFormColums.length; i++) {
-          for (n = 0; n < notAccepted.length; n++) {
-            if ($(allFormColums[i]).val().match(notAccepted[n])){
-              alert("許可されていない記号が含まれています。\n【例】>　<　=　＞　＜　＝　;　；");
-              $(allFormColums[i]).val(function(i, v) {
-                return v.replace(notAccepted[n], '');
-              });
-              return false;
-            }
-          }
-        }
+    var notAccepted = [
+      />/g, /</g, /=/g, /＞/g, /＜/g, /＝/g, /;/g, /；/g, /[?]/
+    ]
 
-        // 全角半角スペースを自動で削除
-        for (i = 0; i < allFormColums.length; i++) {
+    for (i = 0; i < allFormColums.length; i++) {
+      for (n = 0; n < notAccepted.length; n++) {
+        if ($(allFormColums[i]).val().match(notAccepted[n])){
+          alert("許可されていない記号が含まれています。\n【例】>　<　=　＞　＜　＝　;　；");
           $(allFormColums[i]).val(function(i, v) {
-            return v.replace(/\s+/g, "");
+            return v.replace(notAccepted[n], '');
           });
-        }
-
-        // 法人番号入力欄(半角数字の入力のみを許可/13桁の入力を必須とする)
-        if ($(idNumberForm)[0].value.length !== 13 || !$(idNumberForm)[0].value.match(/^[0-9]+$/)) {
-          alert("法人番号は13字以内の半角数字で入力してください");
-          $(idNumberForm).css('border', '1px solid #FF0000');
-          $(idNumberForm)[0].value ="";
+sendButton.disabled = true;
           return false;
         }
-      };
+      }
+    }
+
+    // 全角半角スペースを自動で削除
+    for (i = 0; i < allFormColums.length; i++) {
+      $(allFormColums[i]).val(function(i, v) {
+        return v.replace(/\s+/g, "");
+      });
+    }
+
+    // 法人番号入力欄(半角数字の入力のみを許可/13桁の入力を必須とする)
+    if ($(idNumberForm)[0].value.length !== 13 || !$(idNumberForm)[0].value.match(/^[0-9]+$/)) {
+      alert("法人番号は13字以内の半角数字で入力してください");
+      $(idNumberForm).css('border', '1px solid #FF0000');
+      $(idNumberForm)[0].value ="";
+sendButton.disabled = true;
+      return false;
+    } else {
+      $(idNumberForm).css('border', '1px solid #999');
+      return true;
+    }
+  } else {
+    sendButton.disabled = true;
+  }
+};
+
+// 送信ボタン：制限解除
+function initializeCountUpSendBtn() {
+  countUpSendBtn = 0;
+  sendButton.disabled = false;
+};
+
+
+// function validation(){
+      //   domainForm = document.getElementById("domain");
+      //   companyForm = document.getElementById("company_name");
+      //   prefectureForm = document.getElementById("prefecture_id");
+      //   addressForm = document.getElementById("address");
+      //   phoneForm = document.getElementById("tel");
+      //   faxForm = document.getElementById("fax");
+      //   urlForm = document.getElementById("url");
+      //   idNumberForm = document.getElementById("company_mynumber");
+      //   allFormColums = [domainForm, companyForm, prefectureForm, addressForm, phoneForm, faxForm, urlForm, idNumberForm]
+      //
+      //   var notAccepted = [
+      //     />/g, /</g, /=/g, /＞/g, /＜/g, /＝/g, /;/g, /；/g, /[?]/
+      //   ]
+      //
+      //   for (i = 0; i < allFormColums.length; i++) {
+      //     for (n = 0; n < notAccepted.length; n++) {
+      //       if ($(allFormColums[i]).val().match(notAccepted[n])){
+      //         alert("許可されていない記号が含まれています。\n【例】>　<　=　＞　＜　＝　;　；");
+      //         $(allFormColums[i]).val(function(i, v) {
+      //           return v.replace(notAccepted[n], '');
+      //         });
+      //         return false;
+      //       }
+      //     }
+      //   }
+      //
+      //   // 全角半角スペースを自動で削除
+      //   for (i = 0; i < allFormColums.length; i++) {
+      //     $(allFormColums[i]).val(function(i, v) {
+      //       return v.replace(/\s+/g, "");
+      //     });
+      //   }
+      //
+      //   // 法人番号入力欄(半角数字の入力のみを許可/13桁の入力を必須とする)
+      //   if ($(idNumberForm)[0].value.length !== 13 || !$(idNumberForm)[0].value.match(/^[0-9]+$/)) {
+      //     alert("法人番号は13字以内の半角数字で入力してください");
+      //     $(idNumberForm).css('border', '1px solid #FF0000');
+      //     $(idNumberForm)[0].value ="";
+      //     return false;
+      //   }
+      // };
+
+
 
       // 入力時スペースを削除
       function deleteSpace(text) {
         text.value = text.value.replace(/\s+/g, "");
       }
       // 検索ウィンドウで下3桁のみを残す(2回目からはこれをdisable)
-// ID既にcfm上にあり
-window.addEventListener('DOMContentLoaded', function (event) {
-  var searchContainer = document.getElementById( "example_filter" );
-  var searchWindow = $(searchContainer).find("input");
-  var countUp = 0;
-  $(searchWindow).on('input', function(){
-    countUp++;
-    var searchWord = $(searchWindow).val();
-    if (countUp == 1) {
-      if (searchWord.length > 0) {
-        // 全角半角スペースを自動で削除
-        $(searchWindow).val(function(i, v) {
-           return v.replace(/\s+/g, "");
-         });
-        // サブドメイン 以外削除
-        getExtension = searchWord.split(".").slice(-3);
-        searchWord = getExtension.join(".");
-        $(searchWindow).val(searchWord);
-      }
-    } else {
-      if (searchWord.length > 0) {
-        $(searchWindow).val(function(i, v) {
-           return v.replace(/\s+/g, "");
-         });
-      }
-    }
-  });
-});
+      // ID既にcfm上にあり
+      window.addEventListener('DOMContentLoaded', function (event) {
+        var searchContainer = document.getElementById( "example_filter" );
+        var searchWindow = $(searchContainer).find("input");
+        var countUp = 0;
+        $(searchWindow).on('input', function(){
+          countUp++;
+          var searchWord = $(searchWindow).val();
+          if (countUp == 1) {
+            if (searchWord.length > 0) {
+              // 全角半角スペースを自動で削除
+              $(searchWindow).val(function(i, v) {
+                 return v.replace(/\s+/g, "");
+               });
+              // サブドメイン 以外削除
+              getExtension = searchWord.split(".").slice(-3);
+              searchWord = getExtension.join(".");
+              $(searchWindow).val(searchWord);
+            }
+          } else {
+            if (searchWord.length > 0) {
+              $(searchWindow).val(function(i, v) {
+                 return v.replace(/\s+/g, "");
+               });
+            }
+          }
+        });
+      });
 
 
       // 入力時：法人番号入力欄(半角数字の入力のみを許可/13桁の入力を必須とする)
